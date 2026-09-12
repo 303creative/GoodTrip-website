@@ -1,0 +1,5 @@
+uploads/
+*.zip
+.thumbnail
+*.psd
+*.psb
