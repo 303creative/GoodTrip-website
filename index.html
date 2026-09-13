@@ -54,7 +54,7 @@
   <div style="animation:gtIn .3s ease both">
     <div style="position:relative;height:430px">
       <div style="position:absolute;inset:0">
-        <image-slot id="gt-hero" shape="rect" placeholder="Foto principal: destino con viajeros (horizontal)"></image-slot>
+        <image-slot id="gt-hero" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_074f7141-f231-4dff-b6fa-371cb613f126.png" shape="rect" placeholder="Foto principal: destino con viajeros (horizontal)"></image-slot>
       </div>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,37,92,.72) 0%,rgba(22,37,92,.35) 45%,rgba(22,37,92,.88) 100%);pointer-events:none"></div>
       <div style="position:absolute;left:0;right:0;top:26px;padding:0 20px;pointer-events:none">
@@ -118,7 +118,7 @@
       <sc-for list="{{ offers }}" as="o" hint-placeholder-count="3">
         <div onClick="{{ o.open }}" style="flex:none;width:250px;scroll-snap-align:start;border:1px solid #EAF1FF;border-radius:20px;overflow:hidden;cursor:pointer;background:#fff;box-shadow:0 8px 24px rgba(22,37,92,.07)">
           <div style="position:relative;height:150px">
-            <image-slot id="{{ o.slot }}" shape="rect" placeholder="{{ o.ph }}"></image-slot>
+            <image-slot id="{{ o.slot }}" src="{{ o.img }}" shape="rect" placeholder="{{ o.ph }}"></image-slot>
             <span style="position:absolute;top:11px;left:11px;background:rgba(255,255,255,.94);color:#16255C;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px">{{ o.tag }}</span>
           </div>
           <div style="padding:13px 14px 15px">
@@ -167,7 +167,7 @@
       <sc-for list="{{ blogTop }}" as="p" hint-placeholder-count="2">
         <div onClick="{{ p.open }}" style="display:flex;gap:13px;align-items:center;cursor:pointer">
           <div style="flex:none;width:88px;height:70px;border-radius:14px;overflow:hidden">
-            <image-slot id="{{ p.slot }}" shape="rect" placeholder="Foto"></image-slot>
+            <image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rect" placeholder="Foto"></image-slot>
           </div>
           <div style="min-width:0">
             <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#EE3D12">{{ p.cat }}</div>
@@ -204,7 +204,7 @@
     <div style="display:grid;gap:13px;padding-bottom:20px">
       <sc-for list="{{ destList }}" as="d" hint-placeholder-count="4">
         <div onClick="{{ d.open }}" style="position:relative;height:172px;border-radius:20px;overflow:hidden;cursor:pointer">
-          <image-slot id="{{ d.slot }}" shape="rect" placeholder="{{ d.ph }}"></image-slot>
+          <image-slot id="{{ d.slot }}" src="{{ d.img }}" shape="rect" placeholder="{{ d.ph }}"></image-slot>
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,37,92,0) 35%,rgba(22,37,92,.85) 100%);pointer-events:none"></div>
           <div style="position:absolute;left:16px;right:16px;bottom:14px;pointer-events:none">
             <div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FFD08F">{{ d.region }}</div>
@@ -225,7 +225,7 @@
       <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
         <div onClick="{{ p.open }}" style="cursor:pointer;border-bottom:1px solid #EAF1FF;padding-bottom:16px">
           <div style="height:160px;border-radius:18px;overflow:hidden">
-            <image-slot id="{{ p.slot }}" shape="rect" placeholder="{{ p.ph }}"></image-slot>
+            <image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rect" placeholder="{{ p.ph }}"></image-slot>
           </div>
           <div style="display:flex;gap:8px;align-items:center;margin-top:11px">
             <span style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#EE3D12">{{ p.cat }}</span>
@@ -242,7 +242,7 @@
   <sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
   <div style="animation:gtIn .3s ease both">
     <div style="height:230px;position:relative">
-      <image-slot id="{{ post.slot }}" shape="rect" placeholder="{{ post.ph }}"></image-slot>
+      <image-slot id="{{ post.slot }}" src="{{ post.img }}" shape="rect" placeholder="{{ post.ph }}"></image-slot>
       <button onClick="{{ goBlog }}" style="position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:999px;border:none;background:rgba(255,255,255,.94);color:#16255C;font-size:18px;cursor:pointer;line-height:1">←</button>
     </div>
     <div style="padding:20px 18px 0">
@@ -266,7 +266,7 @@
         <sc-for list="{{ related }}" as="r" hint-placeholder-count="2">
           <div onClick="{{ r.open }}" style="display:flex;gap:12px;align-items:center;cursor:pointer;padding:9px 0">
             <div style="flex:none;width:64px;height:56px;border-radius:12px;overflow:hidden">
-              <image-slot id="{{ r.slot }}" shape="rect" placeholder="Foto"></image-slot>
+              <image-slot id="{{ r.slot }}" src="{{ r.img }}" shape="rect" placeholder="Foto"></image-slot>
             </div>
             <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:14.5px;line-height:1.3;color:#16255C">{{ r.title }}</div>
           </div>
@@ -390,7 +390,7 @@ const POSTS = [
     title: "Cuánto cuesta viajar a Cancún desde Monterrey en 2026",
     date: "8 sep 2026",
     read: "6 min",
-    slot: "gt-post-1",
+    slot: "gt-post-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png",
     ph: "Foto: playa del Caribe mexicano",
     excerpt: "Vuelo, hospedaje, traslados y comidas: el desglose real de una semana en el Caribe mexicano saliendo del aeropuerto de Monterrey.",
     sections: [
@@ -406,7 +406,7 @@ const POSTS = [
     title: "Viajes grupales: cómo funcionan y a quién le convienen",
     date: "1 sep 2026",
     read: "5 min",
-    slot: "gt-post-2",
+    slot: "gt-post-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192041_0ddede08-fa6b-4700-bf4c-7eb215d0e632.png",
     ph: "Foto: grupo de viajeros en un mirador",
     excerpt: "Una salida grupal no es un tour de camión con horarios imposibles. Así se arma una y por qué suele costar menos que ir por tu cuenta.",
     sections: [
@@ -421,7 +421,7 @@ const POSTS = [
     title: "La mejor época para viajar a Europa si sales de México",
     date: "24 ago 2026",
     read: "7 min",
-    slot: "gt-post-3",
+    slot: "gt-post-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192041_614292c7-b4b4-4af2-b264-afa5d131288e.png",
     ph: "Foto: calle europea en primavera",
     excerpt: "Clima, precios y multitudes cambian mucho entre mayo y octubre. Esta es la lectura práctica de cada temporada para un viajero mexicano.",
     sections: [
@@ -437,7 +437,7 @@ const POSTS = [
     title: "Pasaporte, visas y permisos: qué necesitas antes de volar",
     date: "17 ago 2026",
     read: "4 min",
-    slot: "gt-post-4",
+    slot: "gt-post-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_d02b93d7-2786-449d-aa14-1248d22ed6d1.png",
     ph: "Foto: pasaporte mexicano y boletos",
     excerpt: "La lista de documentos que revisamos con cada cliente antes de comprar boletos, incluyendo los trámites que tardan semanas.",
     sections: [
@@ -449,21 +449,21 @@ const POSTS = [
 ];
 
 const OFFERS = [
-  { id: "cancun", tag: "Todo incluido", title: "Cancún · 5 días", meta: "Vuelo MTY + hotel + traslados", price: "$14,900", slot: "gt-off-1", ph: "Foto: hotel frente al mar" },
-  { id: "cabos", tag: "Escapada", title: "Los Cabos · 4 días", meta: "Salida grupal, marzo 2026", price: "$16,400", slot: "gt-off-2", ph: "Foto: costa de Los Cabos" },
-  { id: "turquia", tag: "Gran viaje", title: "Turquía · 11 días", meta: "Grupal con guía en español", price: "$38,700", slot: "gt-off-3", ph: "Foto: Capadocia o Estambul" },
-  { id: "peru", tag: "Cultural", title: "Perú · 8 días", meta: "Cusco, Valle Sagrado y Machu Picchu", price: "$29,500", slot: "gt-off-4", ph: "Foto: Machu Picchu" }
+  { id: "cancun", tag: "Todo incluido", title: "Cancún · 5 días", meta: "Vuelo MTY + hotel + traslados", price: "$14,900", slot: "gt-off-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png", ph: "Foto: hotel frente al mar" },
+  { id: "cabos", tag: "Escapada", title: "Los Cabos · 4 días", meta: "Salida grupal, marzo 2026", price: "$16,400", slot: "gt-off-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: costa de Los Cabos" },
+  { id: "turquia", tag: "Gran viaje", title: "Turquía · 11 días", meta: "Grupal con guía en español", price: "$38,700", slot: "gt-off-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_696ce372-85d1-401e-bee3-d08abcb576e3.png", ph: "Foto: Capadocia o Estambul" },
+  { id: "peru", tag: "Cultural", title: "Perú · 8 días", meta: "Cusco, Valle Sagrado y Machu Picchu", price: "$29,500", slot: "gt-off-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png", ph: "Foto: Machu Picchu" }
 ];
 
 const DESTS = [
-  { name: "Riviera Maya", region: "México", note: "Playa, cenotes y todo incluido", r: "México", slot: "gt-dst-1", ph: "Foto: Riviera Maya" },
-  { name: "Los Cabos", region: "México", note: "Escapada de fin de semana", r: "México", slot: "gt-dst-2", ph: "Foto: Los Cabos" },
-  { name: "Chiapas", region: "México", note: "Selva, cascadas y pueblos", r: "México", slot: "gt-dst-3", ph: "Foto: Chiapas" },
-  { name: "Turquía", region: "Europa y Asia", note: "Estambul, Capadocia y Éfeso", r: "Europa", slot: "gt-dst-4", ph: "Foto: Turquía" },
-  { name: "Balcanes", region: "Europa", note: "Croacia, Eslovenia y Montenegro", r: "Europa", slot: "gt-dst-5", ph: "Foto: Balcanes" },
-  { name: "Marruecos", region: "África", note: "Desierto, medinas y kasbahs", r: "Otros", slot: "gt-dst-6", ph: "Foto: Marruecos" },
-  { name: "Perú", region: "Sudamérica", note: "Machu Picchu y Valle Sagrado", r: "Sudamérica", slot: "gt-dst-7", ph: "Foto: Perú" },
-  { name: "Japón", region: "Asia", note: "Tokio, Kioto y Osaka", r: "Otros", slot: "gt-dst-8", ph: "Foto: Japón" }
+  { name: "Riviera Maya", region: "México", note: "Playa, cenotes y todo incluido", r: "México", slot: "gt-dst-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png", ph: "Foto: Riviera Maya" },
+  { name: "Los Cabos", region: "México", note: "Escapada de fin de semana", r: "México", slot: "gt-dst-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: Los Cabos" },
+  { name: "Chiapas", region: "México", note: "Selva, cascadas y pueblos", r: "México", slot: "gt-dst-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_93d46fba-ca99-446f-a3c1-8445b30ff075.png", ph: "Foto: Chiapas" },
+  { name: "Turquía", region: "Europa y Asia", note: "Estambul, Capadocia y Éfeso", r: "Europa", slot: "gt-dst-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_696ce372-85d1-401e-bee3-d08abcb576e3.png", ph: "Foto: Turquía" },
+  { name: "Balcanes", region: "Europa", note: "Croacia, Eslovenia y Montenegro", r: "Europa", slot: "gt-dst-5", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_e60d1202-ed79-44dc-a1ab-b3950aa6ff8e.png", ph: "Foto: Balcanes" },
+  { name: "Marruecos", region: "África", note: "Desierto, medinas y kasbahs", r: "Otros", slot: "gt-dst-6", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195342_733482f9-2ffa-47c8-beac-35470229d45d.png", ph: "Foto: Marruecos" },
+  { name: "Perú", region: "Sudamérica", note: "Machu Picchu y Valle Sagrado", r: "Sudamérica", slot: "gt-dst-7", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png", ph: "Foto: Perú" },
+  { name: "Japón", region: "Asia", note: "Tokio, Kioto y Osaka", r: "Otros", slot: "gt-dst-8", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_f88d163b-90f9-4f94-9dd6-9326fc219e38.png", ph: "Foto: Japón" }
 ];
 
 const ICONS = {
@@ -599,15 +599,15 @@ class Component extends DCLogic {
         { d: ICONS.pin, title: "Desde Monterrey", text: "Itinerarios pensados con salidas desde MTY y horarios que sí se pueden cumplir." }
       ],
 
-      blogTop: POSTS.slice(0, 3).map(p => ({ cat: p.cat, title: p.title, read: p.read, slot: p.slot, open: this.openPost(p.slug) })),
+      blogTop: POSTS.slice(0, 3).map(p => ({ cat: p.cat, title: p.title, read: p.read, slot: p.slot, img: p.img, open: this.openPost(p.slug) })),
       posts: POSTS.map(p => ({
         cat: p.cat, title: p.title, date: p.date, read: p.read, excerpt: p.excerpt,
-        slot: p.slot, ph: p.ph, open: this.openPost(p.slug)
+        slot: p.slot, ph: p.ph, img: p.img, open: this.openPost(p.slug)
       })),
 
       post: post,
       related: POSTS.filter(p => p.slug !== post.slug).slice(0, 2).map(p => ({
-        title: p.title, slot: p.slot, open: this.openPost(p.slug)
+        title: p.title, slot: p.slot, img: p.img, open: this.openPost(p.slug)
       })),
 
       regions: ["Todos", "México", "Europa", "Sudamérica", "Otros"].map(r => ({
