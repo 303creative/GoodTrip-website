@@ -448,11 +448,20 @@ const POSTS = [
   }
 ];
 
+// Ofertas ratificadas por Good Trip (flyers oficiales). Imágenes: reemplazar por los flyers reales en assets/offers/<id>.jpg cuando estén disponibles.
+const IMG_CANCUN = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png";
+const IMG_CABOS = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png";
+const IMG_MEX = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_93d46fba-ca99-446f-a3c1-8445b30ff075.png";
+const IMG_SUD = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png";
 const OFFERS = [
-  { id: "cancun", tag: "Todo incluido", title: "Cancún · 5 días", meta: "Vuelo MTY + hotel + traslados", price: "$14,900", slot: "gt-off-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png", ph: "Foto: hotel frente al mar" },
-  { id: "cabos", tag: "Escapada", title: "Los Cabos · 4 días", meta: "Escapada grupal · fechas bajo consulta", price: "$16,400", slot: "gt-off-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: costa de Los Cabos" },
-  { id: "turquia", tag: "Gran viaje", title: "Turquía · 11 días", meta: "Grupal con guía en español", price: "$38,700", slot: "gt-off-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_696ce372-85d1-401e-bee3-d08abcb576e3.png", ph: "Foto: Capadocia o Estambul" },
-  { id: "peru", tag: "Cultural", title: "Perú · 8 días", meta: "Cusco, Valle Sagrado y Machu Picchu", price: "$29,500", slot: "gt-off-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png", ph: "Foto: Machu Picchu" }
+  { id: "cancun-oceanview", tag: "Todo incluido", title: "Cancún · Ocean View Arenas", meta: "23–26 nov 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$7,900", slot: "gt-off-1", img: IMG_CANCUN, ph: "Cancún — Ocean View Arenas" },
+  { id: "cancun-grandoasis", tag: "Todo incluido", title: "Cancún · Grand Oasis", meta: "23–26 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$7,499", slot: "gt-off-2", img: IMG_CANCUN, ph: "Cancún — Grand Oasis" },
+  { id: "cancun-crown", tag: "Todo incluido", title: "Cancún · Crown Paradise Club", meta: "15–18 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$9,899", slot: "gt-off-3", img: IMG_CANCUN, ph: "Cancún — Crown Paradise" },
+  { id: "cancun-riu", tag: "Todo incluido", title: "Cancún · RIU Palace Las Américas", meta: "8–11 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$12,999", slot: "gt-off-4", img: IMG_CANCUN, ph: "Cancún — RIU Palace" },
+  { id: "guadalajara", tag: "Viaje grupal", title: "Guadalajara", meta: "20–23 nov 2026 · vuelo + hotel céntrico + traslados · por persona", price: "$5,499", slot: "gt-off-5", img: IMG_MEX, ph: "Guadalajara" },
+  { id: "loscabos-posadareal", tag: "Todo incluido", title: "Los Cabos · Posada Real", meta: "20–23 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$9,499", slot: "gt-off-6", img: IMG_CABOS, ph: "Los Cabos — Posada Real" },
+  { id: "medellin", tag: "Viaje grupal", title: "Medellín, Colombia", meta: "5–10 mar 2027 · vuelos internacionales desde MTY · hotel c/desayuno · por persona", price: "$13,999", slot: "gt-off-7", img: IMG_SUD, ph: "Medellín, Colombia" },
+  { id: "brasil-rio", tag: "Viaje grupal", title: "Brasil · Río de Janeiro", meta: "6–14 may 2027 · Copacabana · aparta con $1,000, hasta 24 MSI", price: "$2,750/mes", slot: "gt-off-8", img: IMG_SUD, ph: "Río de Janeiro, Brasil" }
 ];
 
 const DESTS = [
@@ -484,7 +493,7 @@ const ICONS = {
 
 const CHAT = [
   { label: "Quiero cotizar un viaje", answer: "Perfecto. Dime destino, fecha aproximada y cuántas personas van, y te armo la cotización con precio final por persona." },
-  { label: "¿Qué salidas grupales hay?", answer: "Para los próximos meses tenemos salidas a Los Cabos, Turquía y Perú, y estamos armando una a los Balcanes. Todas con guía en español y cupo limitado." },
+  { label: "¿Qué salidas grupales hay?", answer: "Próximas salidas: Guadalajara y Los Cabos (nov 2026), Cancún (nov–dic 2026), Medellín (mar 2027) y Brasil · Río de Janeiro (may 2027). Cupo limitado; te confirmo disponibilidad y precio del día." },
   { label: "¿Cómo son los pagos?", answer: "Se aparta con un anticipo por persona y lo demás en pagos antes de la fecha límite. Aceptamos transferencia, tarjeta y meses sin intereses en bancos participantes." },
   { label: "Documentos para viajar", answer: "Pasaporte con al menos seis meses de vigencia y, según el destino, visa o autorización electrónica. Te reviso tu caso puntual antes de comprar boletos." },
   { label: "Viajo desde Monterrey", answer: "Todos los itinerarios los armamos con salidas desde el aeropuerto de Monterrey, con horarios que dan tiempo de llegar y conectar sin prisas." }
