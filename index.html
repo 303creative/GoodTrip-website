@@ -178,6 +178,32 @@
       </sc-for>
     </div>
 
+    <div id="registro" style="padding:28px 18px 0">
+      <div style="background:linear-gradient(140deg,#2B4FC7,#16255C);border-radius:20px;padding:22px 18px">
+        <div style="font-family:Archivo,sans-serif;font-weight:800;font-size:22px;letter-spacing:-.5px;color:#fff">Únete al Club Good Trip</div>
+        <div style="font-size:13.5px;line-height:1.5;color:#CBD6FF;margin-top:6px">Regístrate y recibe primero nuestras promociones y salidas grupales desde Monterrey. Sin costo y sin compromiso.</div>
+        <div style="margin-top:16px;display:grid;gap:9px">
+          <input value="{{ rName }}" onChange="{{ setRName }}" placeholder="Nombre completo" style="width:100%;height:48px;border:none;border-radius:12px;padding:0 14px;font-size:15px;color:#16255C;outline:none;background:#fff">
+          <input value="{{ rEmail }}" onChange="{{ setREmail }}" type="email" inputmode="email" placeholder="Correo electrónico" style="width:100%;height:48px;border:none;border-radius:12px;padding:0 14px;font-size:15px;color:#16255C;outline:none;background:#fff">
+          <input value="{{ rPhone }}" onChange="{{ setRPhone }}" type="tel" inputmode="tel" placeholder="WhatsApp / teléfono" style="width:100%;height:48px;border:none;border-radius:12px;padding:0 14px;font-size:15px;color:#16255C;outline:none;background:#fff">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+            <input value="{{ rCity }}" onChange="{{ setRCity }}" placeholder="Ciudad (ej. Monterrey)" style="width:100%;height:48px;border:none;border-radius:12px;padding:0 14px;font-size:15px;color:#16255C;outline:none;background:#fff">
+            <select value="{{ rDest }}" onChange="{{ setRDest }}" style="width:100%;height:48px;border:none;border-radius:12px;padding:0 12px;font-size:15px;color:#16255C;background:#fff;appearance:none;outline:none">
+              <option value="">Destino de interés</option>
+              <option>Cancún</option><option>Los Cabos</option><option>Guadalajara</option><option>Medellín</option><option>Brasil</option><option>Viaje a medida</option><option>Aún no lo sé</option>
+            </select>
+          </div>
+          <input value="{{ rHP }}" onChange="{{ setRHP }}" tabindex="-1" autocomplete="off" aria-hidden="true" placeholder="No llenar" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <label style="display:flex;gap:9px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:#CBD6FF;cursor:pointer;margin-top:2px">
+            <input type="checkbox" onChange="{{ setRConsent }}" style="margin-top:2px;flex:none;width:17px;height:17px">
+            <span>Acepto recibir promociones y que Good Trip trate mis datos con fines de marketing, conforme al <a href="aviso-privacidad.html" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Aviso de Privacidad</a>.</span>
+          </label>
+          <button onClick="{{ submitReg }}" style="height:52px;border:none;border-radius:13px;background:#EE3D12;color:#fff;font-family:Archivo,sans-serif;font-weight:700;font-size:16px;cursor:pointer">{{ regBtn }}</button>
+          <div role="status" aria-live="polite" style="font-size:12.5px;line-height:1.5;color:#fff;min-height:16px">{{ regStatus }}</div>
+        </div>
+      </div>
+    </div>
+
     <div style="margin:28px 0 0;background-color:#16255C;background-image:linear-gradient(rgba(22,37,92,.94),rgba(22,37,92,.94)),url('./assets/gt-textura.png');background-repeat:no-repeat,repeat;background-size:auto,300px auto;color:#A8B4DC;padding:24px 18px 30px;font-size:12.5px;line-height:1.7">
       <img src="./assets/gt-wordmark-blanco.png" alt="GoodTrip Agencia de Viajes" style="width:190px;height:auto;display:block;margin:0 0 4px -6px">
       <div style="margin-top:6px">Guadalupe, Nuevo León · Atención 24 h por WhatsApp</div>
@@ -186,6 +212,8 @@
         <a href="{{ hrefHome }}" onClick="{{ goBlog }}" style="color:#CBD6FF">Blog</a>
         <a href="{{ hrefHome }}" onClick="{{ goQuote }}" style="color:#CBD6FF">Cotizar</a>
         <a href="{{ waLink }}" target="_blank" rel="noopener" style="color:#CBD6FF">WhatsApp</a>
+        <a href="#registro" style="color:#CBD6FF">Registro</a>
+        <a href="aviso-privacidad.html" style="color:#CBD6FF">Aviso de privacidad</a>
       </div>
       <div style="margin-top:16px;font-size:12px;color:#A8B4DC">Precios de referencia por persona en ocupación doble, sujetos a disponibilidad.</div>
     </div>
@@ -499,11 +527,46 @@ const CHAT = [
   { label: "Viajo desde Monterrey", answer: "Todos los itinerarios los armamos con salidas desde el aeropuerto de Monterrey, con horarios que dan tiempo de llegar y conectar sin prisas." }
 ];
 
+// n8n webhook que recibe los registros del Club Good Trip (el token de Notion vive en n8n, nunca aquí).
+const REG_WEBHOOK = "https://the303photography.app.n8n.cloud/webhook/goodtrip-registro";
+
 class Component extends DCLogic {
   state = {
     screen: "home", tab: "Paquetes", region: "Todos", slug: null,
     chatOpen: false, chatSeen: false, chatLog: [{ from: "bot", text: "Hola, soy el asistente de GoodTrip. ¿En qué te ayudo con tu viaje?" }], chatAsked: [],
-    dest: "", date: "", pax: "2 personas", type: "Paquete todo incluido", budget: "", note: "", pkg: "", pkgId: ""
+    dest: "", date: "", pax: "2 personas", type: "Paquete todo incluido", budget: "", note: "", pkg: "", pkgId: "",
+    rName: "", rEmail: "", rPhone: "", rCity: "", rDest: "", rConsent: false, rHP: "", regStatus: "", regBusy: false
+  };
+
+  setRName = e => this.setState({ rName: e.target.value });
+  setREmail = e => this.setState({ rEmail: e.target.value });
+  setRPhone = e => this.setState({ rPhone: e.target.value });
+  setRCity = e => this.setState({ rCity: e.target.value });
+  setRDest = e => this.setState({ rDest: e.target.value });
+  setRHP = e => this.setState({ rHP: e.target.value });
+  setRConsent = e => this.setState({ rConsent: e.target.checked });
+
+  submitReg = async () => {
+    const s = this.state;
+    if (s.rHP) { this.setState({ regStatus: "¡Gracias! Te contactaremos pronto." }); return; }
+    if (!s.rName.trim() || !s.rEmail.trim()) { this.setState({ regStatus: "Escribe tu nombre y tu correo." }); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.rEmail.trim())) { this.setState({ regStatus: "Revisa tu correo, no parece válido." }); return; }
+    if (!s.rConsent) { this.setState({ regStatus: "Marca la casilla para aceptar el Aviso de Privacidad." }); return; }
+    if (s.regBusy) return;
+    this.setState({ regBusy: true, regStatus: "Enviando…" });
+    const payload = {
+      nombre: s.rName.trim(), email: s.rEmail.trim(), telefono: s.rPhone.trim(),
+      ciudad: s.rCity.trim(), destino_interes: s.rDest, consentimiento_marketing: true,
+      fuente: "web-goodtrip-registro", pagina: (typeof location !== "undefined" && location.href) || "",
+      fecha: new Date().toISOString()
+    };
+    try {
+      const r = await fetch(REG_WEBHOOK, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      if (!r.ok) throw new Error("bad status " + r.status);
+      this.setState({ regBusy: false, regStatus: "¡Listo! Quedaste registrado. Te escribiremos con las próximas salidas.", rName: "", rEmail: "", rPhone: "", rCity: "", rDest: "", rConsent: false });
+    } catch (e) {
+      this.setState({ regBusy: false, regStatus: "No se pudo enviar ahora. Escríbenos por WhatsApp y te registramos." });
+    }
   };
 
   go = (screen) => () => { this.setState({ screen }); window.scrollTo(0, 0); };
@@ -587,6 +650,11 @@ class Component extends DCLogic {
       setPax: e => this.setState({ pax: e.target.value }),
       setType: e => this.setState({ type: e.target.value }),
       setNote: e => this.setState({ note: e.target.value }),
+
+      rName: s.rName, rEmail: s.rEmail, rPhone: s.rPhone, rCity: s.rCity, rDest: s.rDest, rHP: s.rHP,
+      setRName: this.setRName, setREmail: this.setREmail, setRPhone: this.setRPhone,
+      setRCity: this.setRCity, setRDest: this.setRDest, setRHP: this.setRHP, setRConsent: this.setRConsent,
+      submitReg: this.submitReg, regStatus: s.regStatus, regBtn: s.regBusy ? "Enviando…" : "Registrarme",
 
       tabs: ["Paquetes", "Grupales", "A medida"].map(t => ({
         label: t, pick: () => this.setState({ tab: t }),
