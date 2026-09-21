@@ -1,0 +1,3 @@
+# GoodTrip — robots.txt
+User-agent: *
+Allow: /

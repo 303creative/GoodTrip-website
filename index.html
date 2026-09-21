@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es-MX">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -382,7 +382,7 @@
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;528112345678&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;528187072427&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contacto&quot;}}">
 const POSTS = [
   {
     slug: "cuanto-cuesta-viajar-a-cancun-desde-monterrey",
@@ -450,7 +450,7 @@ const POSTS = [
 
 const OFFERS = [
   { id: "cancun", tag: "Todo incluido", title: "Cancún · 5 días", meta: "Vuelo MTY + hotel + traslados", price: "$14,900", slot: "gt-off-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png", ph: "Foto: hotel frente al mar" },
-  { id: "cabos", tag: "Escapada", title: "Los Cabos · 4 días", meta: "Salida grupal, marzo 2026", price: "$16,400", slot: "gt-off-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: costa de Los Cabos" },
+  { id: "cabos", tag: "Escapada", title: "Los Cabos · 4 días", meta: "Escapada grupal · fechas bajo consulta", price: "$16,400", slot: "gt-off-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: costa de Los Cabos" },
   { id: "turquia", tag: "Gran viaje", title: "Turquía · 11 días", meta: "Grupal con guía en español", price: "$38,700", slot: "gt-off-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_696ce372-85d1-401e-bee3-d08abcb576e3.png", ph: "Foto: Capadocia o Estambul" },
   { id: "peru", tag: "Cultural", title: "Perú · 8 días", meta: "Cusco, Valle Sagrado y Machu Picchu", price: "$29,500", slot: "gt-off-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png", ph: "Foto: Machu Picchu" }
 ];
@@ -494,10 +494,14 @@ class Component extends DCLogic {
   state = {
     screen: "home", tab: "Paquetes", region: "Todos", slug: null,
     chatOpen: false, chatSeen: false, chatLog: [{ from: "bot", text: "Hola, soy el asistente de GoodTrip. ¿En qué te ayudo con tu viaje?" }], chatAsked: [],
-    dest: "", date: "", pax: "2 personas", type: "Paquete todo incluido", budget: "", note: ""
+    dest: "", date: "", pax: "2 personas", type: "Paquete todo incluido", budget: "", note: "", pkg: "", pkgId: ""
   };
 
   go = (screen) => () => { this.setState({ screen }); window.scrollTo(0, 0); };
+
+  pickOffer = (o) => () => { this.setState({ screen: "quote", pkg: o.title, pkgId: o.id, dest: o.title }); window.scrollTo(0, 0); };
+
+  pickType = (type) => () => { this.setState({ screen: "quote", type, pkg: "", pkgId: "" }); window.scrollTo(0, 0); };
 
   openPost = (slug) => () => { this.setState({ screen: "post", slug }); window.scrollTo(0, 0); };
 
@@ -508,15 +512,15 @@ class Component extends DCLogic {
 
   waMessage() {
     const s = this.state;
-    const lines = [
-      "Hola Kano, quiero cotizar un viaje con GoodTrip.",
-      "Tipo: " + (s.screen === "quote" ? s.type : s.tab),
-      "Destino: " + (s.dest || "por definir"),
-      "Fecha: " + (s.date || "flexible"),
-      "Viajeros: " + s.pax
-    ];
+    const lines = ["Hola Kano, quiero cotizar un viaje con GoodTrip."];
+    if (s.pkg) lines.push("Paquete: " + s.pkg + (s.pkgId ? " (ref: " + s.pkgId + ")" : ""));
+    lines.push("Tipo: " + (s.screen === "quote" ? s.type : s.tab));
+    lines.push("Destino: " + (s.dest || "por definir"));
+    lines.push("Fecha: " + (s.date || "flexible"));
+    lines.push("Viajeros: " + s.pax);
     if (s.budget) lines.push("Presupuesto por persona: " + s.budget);
     if (s.note) lines.push("Notas: " + s.note);
+    try { if (location && location.href) lines.push("Página de origen: " + location.href); } catch (e) {}
     return lines.join("\n");
   }
 
@@ -531,7 +535,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const s = this.state;
-    const phone = (this.props.whatsapp ?? "528112345678").replace(/[^0-9]/g, "");
+    const phone = (this.props.whatsapp ?? "528187072427").replace(/[^0-9]/g, "");
     const post = POSTS.find(p => p.slug === s.slug) || POSTS[0];
 
     return {
@@ -583,14 +587,14 @@ class Component extends DCLogic {
 
       shortcuts: [
         { d: ICONS.playa, label: "Playa", go: this.go("destinos") },
-        { d: ICONS.grupo, label: "Grupales", go: this.go("destinos") },
-        { d: ICONS.anillo, label: "Luna de miel", go: this.go("quote") },
-        { d: ICONS.grado, label: "XV y grados", go: this.go("quote") },
-        { d: ICONS.avion, label: "Solo vuelo", go: this.go("quote") },
-        { d: ICONS.brujula, label: "A medida", go: this.go("quote") }
+        { d: ICONS.grupo, label: "Grupales", go: this.pickType("Salida grupal") },
+        { d: ICONS.anillo, label: "Luna de miel", go: this.pickType("Luna de miel") },
+        { d: ICONS.grado, label: "XV y grados", go: this.pickType("XV años o graduación") },
+        { d: ICONS.avion, label: "Solo vuelo", go: this.pickType("Solo vuelo u hotel") },
+        { d: ICONS.brujula, label: "A medida", go: this.pickType("Viaje a medida") }
       ],
 
-      offers: OFFERS.map(o => Object.assign({}, o, { open: this.go("quote") })),
+      offers: OFFERS.map(o => Object.assign({}, o, { open: this.pickOffer(o) })),
 
       trust: [
         { d: ICONS.chat, title: "Una sola persona te atiende", text: "Kano Vega te responde del primer mensaje hasta que regresas. Sin call center ni tickets." },
