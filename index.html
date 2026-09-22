@@ -484,30 +484,34 @@ const POSTS = [
 ];
 
 // Ofertas ratificadas por Good Trip (flyers oficiales). Imágenes: reemplazar por los flyers reales en assets/offers/<id>.jpg cuando estén disponibles.
-const IMG_CANCUN = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png";
-const IMG_CABOS = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png";
-const IMG_MEX = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_93d46fba-ca99-446f-a3c1-8445b30ff075.png";
-const IMG_SUD = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png";
+const IMG_OFF1 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224647_2c9efc89-4949-4940-a129-107eddc58012.png"; // Cancún Ocean View
+const IMG_OFF2 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224646_27972190-0d0c-4438-ba04-8ce22831a57a.png"; // Cancún Grand Oasis
+const IMG_OFF3 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224647_4267fda8-7a9d-403e-b840-24f9795362a1.png"; // Cancún Crown Paradise
+const IMG_OFF4 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224647_f51d3662-d483-46f9-9780-71adaa33e00f.png"; // Cancún RIU Palace
+const IMG_OFF5 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224646_157cc70b-6139-425e-a5c5-4fc91c6b13ab.png"; // Guadalajara
+const IMG_OFF6 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224646_e479ea90-f2c8-4712-abcd-f7e4f1b20209.png"; // Los Cabos
+const IMG_OFF7 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224646_960897b0-f524-4a84-b6f9-267b0a3910d8.png"; // Medellín
+const IMG_OFF8 = "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_224647_e141005e-a811-4762-afc6-e4927f16d346.png"; // Brasil Río
 const OFFERS = [
-  { id: "cancun-oceanview", tag: "Todo incluido", title: "Cancún · Ocean View Arenas", meta: "23–26 nov 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$7,900", slot: "gt-off-1", img: IMG_CANCUN, ph: "Cancún — Ocean View Arenas" },
-  { id: "cancun-grandoasis", tag: "Todo incluido", title: "Cancún · Grand Oasis", meta: "23–26 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$7,499", slot: "gt-off-2", img: IMG_CANCUN, ph: "Cancún — Grand Oasis" },
-  { id: "cancun-crown", tag: "Todo incluido", title: "Cancún · Crown Paradise Club", meta: "15–18 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$9,899", slot: "gt-off-3", img: IMG_CANCUN, ph: "Cancún — Crown Paradise" },
-  { id: "cancun-riu", tag: "Todo incluido", title: "Cancún · RIU Palace Las Américas", meta: "8–11 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$12,999", slot: "gt-off-4", img: IMG_CANCUN, ph: "Cancún — RIU Palace" },
-  { id: "guadalajara", tag: "Viaje grupal", title: "Guadalajara", meta: "20–23 nov 2026 · vuelo + hotel céntrico + traslados · por persona", price: "$5,499", slot: "gt-off-5", img: IMG_MEX, ph: "Guadalajara" },
-  { id: "loscabos-posadareal", tag: "Todo incluido", title: "Los Cabos · Posada Real", meta: "20–23 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$9,499", slot: "gt-off-6", img: IMG_CABOS, ph: "Los Cabos — Posada Real" },
-  { id: "medellin", tag: "Viaje grupal", title: "Medellín, Colombia", meta: "5–10 mar 2027 · vuelos internacionales desde MTY · hotel c/desayuno · por persona", price: "$13,999", slot: "gt-off-7", img: IMG_SUD, ph: "Medellín, Colombia" },
-  { id: "brasil-rio", tag: "Viaje grupal", title: "Brasil · Río de Janeiro", meta: "6–14 may 2027 · Copacabana · aparta con $1,000, hasta 24 MSI", price: "$2,750/mes", slot: "gt-off-8", img: IMG_SUD, ph: "Río de Janeiro, Brasil" }
+  { id: "cancun-oceanview", tag: "Todo incluido", title: "Cancún · Ocean View Arenas", meta: "23–26 nov 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$7,900", slot: "gt-off-1", img: IMG_OFF1, ph: "Cancún — Ocean View Arenas" },
+  { id: "cancun-grandoasis", tag: "Todo incluido", title: "Cancún · Grand Oasis", meta: "23–26 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$7,499", slot: "gt-off-2", img: IMG_OFF2, ph: "Cancún — Grand Oasis" },
+  { id: "cancun-crown", tag: "Todo incluido", title: "Cancún · Crown Paradise Club", meta: "15–18 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$9,899", slot: "gt-off-3", img: IMG_OFF3, ph: "Cancún — Crown Paradise" },
+  { id: "cancun-riu", tag: "Todo incluido", title: "Cancún · RIU Palace Las Américas", meta: "8–11 dic 2026 · vuelo redondo + hotel TI + traslados · por persona", price: "$12,999", slot: "gt-off-4", img: IMG_OFF4, ph: "Cancún — RIU Palace" },
+  { id: "guadalajara", tag: "Viaje grupal", title: "Guadalajara", meta: "20–23 nov 2026 · vuelo + hotel céntrico + traslados · por persona", price: "$5,499", slot: "gt-off-5", img: IMG_OFF5, ph: "Guadalajara" },
+  { id: "loscabos-posadareal", tag: "Todo incluido", title: "Los Cabos · Posada Real", meta: "20–23 nov 2026 · maleta 15 kg + traslados · precio final por persona", price: "$9,499", slot: "gt-off-6", img: IMG_OFF6, ph: "Los Cabos — Posada Real" },
+  { id: "medellin", tag: "Viaje grupal", title: "Medellín, Colombia", meta: "5–10 mar 2027 · vuelos internacionales desde MTY · hotel c/desayuno · por persona", price: "$13,999", slot: "gt-off-7", img: IMG_OFF7, ph: "Medellín, Colombia" },
+  { id: "brasil-rio", tag: "Viaje grupal", title: "Brasil · Río de Janeiro", meta: "6–14 may 2027 · Copacabana · aparta con $1,000, hasta 24 MSI", price: "$2,750/mes", slot: "gt-off-8", img: IMG_OFF8, ph: "Río de Janeiro, Brasil" }
 ];
 
 const DESTS = [
-  { name: "Riviera Maya", region: "México", note: "Playa, cenotes y todo incluido", r: "México", slot: "gt-dst-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_f3ca099c-2366-423f-8b96-9c2f4dba519e.png", ph: "Foto: Riviera Maya" },
-  { name: "Los Cabos", region: "México", note: "Escapada de fin de semana", r: "México", slot: "gt-dst-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_14955a9b-3e0d-45a4-acc6-af7da03abb81.png", ph: "Foto: Los Cabos" },
-  { name: "Chiapas", region: "México", note: "Selva, cascadas y pueblos", r: "México", slot: "gt-dst-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_93d46fba-ca99-446f-a3c1-8445b30ff075.png", ph: "Foto: Chiapas" },
-  { name: "Turquía", region: "Europa y Asia", note: "Estambul, Capadocia y Éfeso", r: "Europa", slot: "gt-dst-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_696ce372-85d1-401e-bee3-d08abcb576e3.png", ph: "Foto: Turquía" },
-  { name: "Balcanes", region: "Europa", note: "Croacia, Eslovenia y Montenegro", r: "Europa", slot: "gt-dst-5", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195141_e60d1202-ed79-44dc-a1ab-b3950aa6ff8e.png", ph: "Foto: Balcanes" },
-  { name: "Marruecos", region: "África", note: "Desierto, medinas y kasbahs", r: "Otros", slot: "gt-dst-6", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195342_733482f9-2ffa-47c8-beac-35470229d45d.png", ph: "Foto: Marruecos" },
-  { name: "Perú", region: "Sudamérica", note: "Machu Picchu y Valle Sagrado", r: "Sudamérica", slot: "gt-dst-7", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_ff105e69-029a-443f-b0ed-bc9222712085.png", ph: "Foto: Perú" },
-  { name: "Japón", region: "Asia", note: "Tokio, Kioto y Osaka", r: "Otros", slot: "gt-dst-8", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_195140_f88d163b-90f9-4f94-9dd6-9326fc219e38.png", ph: "Foto: Japón" }
+  { name: "Riviera Maya", region: "México", note: "Playa, cenotes y todo incluido", r: "México", slot: "gt-dst-1", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_90f77cc9-a105-4c43-8ebe-55f2c9900c1a.png", ph: "Foto: Riviera Maya" },
+  { name: "Los Cabos", region: "México", note: "Escapada de fin de semana", r: "México", slot: "gt-dst-2", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_a123e534-90a1-42ea-a8ac-87a8572dd8ff.png", ph: "Foto: Los Cabos" },
+  { name: "Chiapas", region: "México", note: "Selva, cascadas y pueblos", r: "México", slot: "gt-dst-3", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_5ea21ea3-8ce0-407d-b491-90b63a79493a.png", ph: "Foto: Chiapas" },
+  { name: "Turquía", region: "Europa y Asia", note: "Estambul, Capadocia y Éfeso", r: "Europa", slot: "gt-dst-4", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_122b4a02-e5e5-4817-83e3-4d0f5ac43bb7.png", ph: "Foto: Turquía" },
+  { name: "Balcanes", region: "Europa", note: "Croacia, Eslovenia y Montenegro", r: "Europa", slot: "gt-dst-5", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_d0aa3a8a-e3f9-4b87-a15d-c3ab0986fcb0.png", ph: "Foto: Balcanes" },
+  { name: "Marruecos", region: "África", note: "Desierto, medinas y kasbahs", r: "Otros", slot: "gt-dst-6", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_3d05d817-61a1-4bdf-b04e-44f4cb683c28.png", ph: "Foto: Marruecos" },
+  { name: "Perú", region: "Sudamérica", note: "Machu Picchu y Valle Sagrado", r: "Sudamérica", slot: "gt-dst-7", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225231_90753e44-8561-4070-9604-19e985fbf331.png", ph: "Foto: Perú" },
+  { name: "Japón", region: "Asia", note: "Tokio, Kioto y Osaka", r: "Otros", slot: "gt-dst-8", img: "https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260922_225153_401a23ba-af8e-4f65-9dd4-5f939be86d1b.png", ph: "Foto: Japón" }
 ];
 
 const ICONS = {
