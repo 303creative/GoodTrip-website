@@ -382,11 +382,19 @@
               </div>
             </sc-for>
           </div>
-          <div style="padding:12px 16px 14px;border-top:1px solid #EAF1FF;display:flex;flex-wrap:wrap;gap:7px">
+          <div style="padding:12px 16px 6px;border-top:1px solid #EAF1FF;display:flex;flex-wrap:wrap;gap:7px">
             <sc-for list="{{ chatOptions }}" as="c" hint-placeholder-count="3">
               <button onClick="{{ c.pick }}" style="cursor:pointer;border:1.5px solid #D4DEF7;background:#fff;color:#2B4FC7;border-radius:999px;font-size:12.5px;font-weight:700;padding:9px 13px">{{ c.label }}</button>
             </sc-for>
-            <a href="{{ waLink }}" target="_blank" rel="noopener" style="background:#00798A;color:#fff;border-radius:999px;font-size:12.5px;font-weight:700;padding:10px 14px">Hablar con Kano</a>
+          </div>
+          <div style="padding:6px 16px 12px;display:flex;align-items:center;gap:8px">
+            <input type="text" value="{{ chatDraft }}" onInput="{{ setChatDraft }}" onChange="{{ setChatDraft }}" onKeyDown="{{ onChatKey }}" placeholder="Escribe tu mensaje…" aria-label="Escribe tu mensaje" style="flex:1;min-width:0;border:1.5px solid #D4DEF7;border-radius:999px;padding:11px 15px;font-size:13.5px;color:#16255C;outline:none;background:#fff" />
+            <button onClick="{{ sendChat }}" aria-label="Enviar mensaje" style="flex:none;width:42px;height:42px;border-radius:999px;border:none;cursor:pointer;background:linear-gradient(140deg,#2B4FC7,#16255C);display:flex;align-items:center;justify-content:center">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 19.5 20 12 4.5 4.5 7 12 4.5 19.5ZM7 12h13"></path></svg>
+            </button>
+          </div>
+          <div style="padding:0 16px 14px">
+            <a href="{{ chatWaLink }}" target="_blank" rel="noopener" style="display:block;text-align:center;background:#00798A;color:#fff;border-radius:999px;font-size:13px;font-weight:700;padding:11px 14px">Continuar en WhatsApp</a>
           </div>
         </div>
       </sc-if>
@@ -532,7 +540,7 @@ const REG_WEBHOOK = "https://the303photography.app.n8n.cloud/webhook/goodtrip-re
 class Component extends DCLogic {
   state = {
     screen: "home", tab: "Paquetes", region: "Todos", slug: null,
-    chatOpen: false, chatSeen: false, chatLog: [{ from: "bot", text: "Hola, soy el asistente de GoodTrip. ¿En qué te ayudo con tu viaje?" }], chatAsked: [],
+    chatOpen: false, chatSeen: false, chatLog: [{ from: "bot", text: "Hola, soy el asistente de GoodTrip. ¿En qué te ayudo con tu viaje? Escríbeme o toca una opción." }], chatAsked: [], chatDraft: "", chatMsg: "",
     dest: "", date: "", pax: "2 personas", type: "Paquete todo incluido", budget: "", note: "", pkg: "", pkgId: "",
     rName: "", rEmail: "", rPhone: "", rCity: "", rDest: "", rConsent: false, rHP: "", regStatus: "", regBusy: false
   };
@@ -604,6 +612,23 @@ class Component extends DCLogic {
     }));
   };
 
+  setChatDraft = e => this.setState({ chatDraft: e.target.value });
+
+  sendChat = () => {
+    const t = (this.state.chatDraft || "").trim();
+    if (!t) return;
+    this.setState(st => ({
+      chatLog: st.chatLog.concat([
+        { from: "user", text: t },
+        { from: "bot", text: "¡Gracias! Para darte precio y disponibilidad al momento, seguimos por WhatsApp con tu mensaje. Toca «Continuar en WhatsApp» aquí abajo 👇" }
+      ]),
+      chatDraft: "",
+      chatMsg: t
+    }));
+  };
+
+  onChatKey = e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); this.sendChat(); } };
+
   renderVals() {
     const s = this.state;
     const phone = (this.props.whatsapp ?? "528187072427").replace(/[^0-9]/g, "");
@@ -630,6 +655,13 @@ class Component extends DCLogic {
       })),
       chatOptions: CHAT.filter(c => s.chatAsked.indexOf(c.label) === -1).slice(0, 3)
         .map(c => ({ label: c.label, pick: this.askBot(c) })),
+      chatDraft: s.chatDraft,
+      setChatDraft: this.setChatDraft,
+      sendChat: this.sendChat,
+      onChatKey: this.onChatKey,
+      chatWaLink: "https://wa.me/" + phone + "?text=" + encodeURIComponent(
+        s.chatMsg ? ("Hola Kano, te escribo desde la web de GoodTrip:\n" + s.chatMsg) : this.waMessage()
+      ),
       fabIcon: s.chatOpen
         ? "M6 6l12 12M18 6 6 18"
         : "M20 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.4A8 8 0 1 1 20 12ZM9 11.5h.01M12 11.5h.01M15 11.5h.01",
