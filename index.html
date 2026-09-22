@@ -15,7 +15,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TravelAgency","@id":"#goodtrip","name":"Good Trip Agencia de Viajes","description":"Agencia de viajes en Monterrey, Nuevo León. Viajes grupales y personalizados a México y el mundo desde Monterrey. Asesoría 1 a 1 por WhatsApp.","telephone":"+528187072427","address":{"@type":"PostalAddress","addressLocality":"Guadalupe","addressRegion":"Nuevo León","addressCountry":"MX"},"areaServed":["Monterrey","Guadalupe","San Nicolás de los Garza","San Pedro Garza García","Apodaca","Escobedo","Nuevo León"],"sameAs":["https://www.instagram.com/goodtrip_jk","https://www.facebook.com/GoodTripAgency"],"priceRange":"$$"}
 </script>
@@ -54,7 +53,7 @@
   <div style="animation:gtIn .3s ease both">
     <div style="position:relative;height:430px">
       <div style="position:absolute;inset:0">
-        <image-slot id="gt-hero" src="https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_074f7141-f231-4dff-b6fa-371cb613f126.png" shape="rect" placeholder="Foto principal: destino con viajeros (horizontal)"></image-slot>
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_2xer2BmVWuns6fBapceAXXZOrmH/hf_20260913_192120_074f7141-f231-4dff-b6fa-371cb613f126.png" alt="Good Trip — viajes grupales desde Monterrey" style="width:100%;height:100%;object-fit:cover;display:block">
       </div>
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,37,92,.72) 0%,rgba(22,37,92,.35) 45%,rgba(22,37,92,.88) 100%);pointer-events:none"></div>
       <div style="position:absolute;left:0;right:0;top:26px;padding:0 20px;pointer-events:none">
@@ -118,7 +117,7 @@
       <sc-for list="{{ offers }}" as="o" hint-placeholder-count="3">
         <div onClick="{{ o.open }}" style="flex:none;width:250px;scroll-snap-align:start;border:1px solid #EAF1FF;border-radius:20px;overflow:hidden;cursor:pointer;background:#fff;box-shadow:0 8px 24px rgba(22,37,92,.07)">
           <div style="position:relative;height:150px">
-            <image-slot id="{{ o.slot }}" src="{{ o.img }}" shape="rect" placeholder="{{ o.ph }}"></image-slot>
+            <img src="{{ o.img }}" alt="{{ o.ph }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
             <span style="position:absolute;top:11px;left:11px;background:rgba(255,255,255,.94);color:#16255C;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px">{{ o.tag }}</span>
           </div>
           <div style="padding:13px 14px 15px">
@@ -167,7 +166,7 @@
       <sc-for list="{{ blogTop }}" as="p" hint-placeholder-count="2">
         <div onClick="{{ p.open }}" style="display:flex;gap:13px;align-items:center;cursor:pointer">
           <div style="flex:none;width:88px;height:70px;border-radius:14px;overflow:hidden">
-            <image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rect" placeholder="Foto"></image-slot>
+            <img src="{{ p.img }}" alt="Foto" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
           </div>
           <div style="min-width:0">
             <div style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#EE3D12">{{ p.cat }}</div>
@@ -232,7 +231,7 @@
     <div style="display:grid;gap:13px;padding-bottom:20px">
       <sc-for list="{{ destList }}" as="d" hint-placeholder-count="4">
         <div onClick="{{ d.open }}" style="position:relative;height:172px;border-radius:20px;overflow:hidden;cursor:pointer">
-          <image-slot id="{{ d.slot }}" src="{{ d.img }}" shape="rect" placeholder="{{ d.ph }}"></image-slot>
+          <img src="{{ d.img }}" alt="{{ d.ph }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,37,92,0) 35%,rgba(22,37,92,.85) 100%);pointer-events:none"></div>
           <div style="position:absolute;left:16px;right:16px;bottom:14px;pointer-events:none">
             <div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FFD08F">{{ d.region }}</div>
@@ -253,7 +252,7 @@
       <sc-for list="{{ posts }}" as="p" hint-placeholder-count="4">
         <div onClick="{{ p.open }}" style="cursor:pointer;border-bottom:1px solid #EAF1FF;padding-bottom:16px">
           <div style="height:160px;border-radius:18px;overflow:hidden">
-            <image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rect" placeholder="{{ p.ph }}"></image-slot>
+            <img src="{{ p.img }}" alt="{{ p.ph }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
           </div>
           <div style="display:flex;gap:8px;align-items:center;margin-top:11px">
             <span style="font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#EE3D12">{{ p.cat }}</span>
@@ -270,7 +269,7 @@
   <sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
   <div style="animation:gtIn .3s ease both">
     <div style="height:230px;position:relative">
-      <image-slot id="{{ post.slot }}" src="{{ post.img }}" shape="rect" placeholder="{{ post.ph }}"></image-slot>
+      <img src="{{ post.img }}" alt="{{ post.ph }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
       <button onClick="{{ goBlog }}" style="position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:999px;border:none;background:rgba(255,255,255,.94);color:#16255C;font-size:18px;cursor:pointer;line-height:1">←</button>
     </div>
     <div style="padding:20px 18px 0">
@@ -294,7 +293,7 @@
         <sc-for list="{{ related }}" as="r" hint-placeholder-count="2">
           <div onClick="{{ r.open }}" style="display:flex;gap:12px;align-items:center;cursor:pointer;padding:9px 0">
             <div style="flex:none;width:64px;height:56px;border-radius:12px;overflow:hidden">
-              <image-slot id="{{ r.slot }}" src="{{ r.img }}" shape="rect" placeholder="Foto"></image-slot>
+              <img src="{{ r.img }}" alt="Foto" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block">
             </div>
             <div style="font-family:Archivo,sans-serif;font-weight:600;font-size:14.5px;line-height:1.3;color:#16255C">{{ r.title }}</div>
           </div>
